@@ -53,6 +53,15 @@ namespace AmberMesa.Height
             return AllCollisionMask & ~(1 << GetLayer(level));
         }
 
+        /// <summary>
+        /// 坡道上：保留 from/to 两层碰撞（护栏），排除其余高度带。
+        /// </summary>
+        public static LayerMask ExcludeMaskForRamp(HeightLevel from, HeightLevel to)
+        {
+            int keep = (1 << GetLayer(from)) | (1 << GetLayer(to));
+            return AllCollisionMask & ~keep;
+        }
+
         public static float ToHeight(HeightLevel level)
         {
             return level switch
@@ -65,7 +74,7 @@ namespace AmberMesa.Height
         }
 
         /// <summary>
-        /// 将连续高度落到最近的高度带（暂无坡道滞后；过渡区以后再加）。
+        /// 将连续高度落到最近的高度带（坡道中段会在中点切换 Sorting / 非坡碰撞带）。
         /// </summary>
         public static HeightLevel ToLevel(float height)
         {
