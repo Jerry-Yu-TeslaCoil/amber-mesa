@@ -8,7 +8,9 @@ using UnityEngine;
 /// 与 Terrain Tilemap 的 TilemapCollider2D / CompositeCollider2D 产生真实碰撞，
 /// 同时把移动输入同步给 Animator 的四方向跑步动画。
 ///
-/// 依赖：玩家对象需挂 Rigidbody2D（Dynamic）、Collider2D、Animator。
+/// 依赖：玩家根物体挂 Rigidbody2D（Dynamic）、Collider2D；
+/// Animator 可在 Visual 子物体上（与 ActorHeight 的视觉抬升配合）。
+/// 同层地形碰撞由 <see cref="AmberMesa.Height.ActorHeight"/> 通过 excludeLayers 过滤。
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -28,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        // Animator 在 Visual 子物体上（高度抬升只动视觉，不动碰撞体）。
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
