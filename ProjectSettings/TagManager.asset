@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Terrain
   - Terrain Assets
-  - 
-  - 
-  - 
+  - DeepCollision
+  - GroundCollision
+  - HighCollision
   - 
   - 
   - 
@@ -40,4 +40,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: DeepFloor
+    uniqueID: 2718281828
+    locked: 0
+  - name: DeepFace
+    uniqueID: 2718281829
+    locked: 0
+  - name: GroundFloor
+    uniqueID: 2718281830
+    locked: 0
+  - name: GroundFace
+    uniqueID: 2718281831
+    locked: 0
+  - name: HighFloor
+    uniqueID: 2718281832
+    locked: 0
+  - name: High
+    uniqueID: 2718281833
     locked: 0
