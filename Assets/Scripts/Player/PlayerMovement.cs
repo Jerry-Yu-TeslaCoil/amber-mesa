@@ -20,9 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("移动速度（世界单位/秒）。")]
     [SerializeField] private float moveSpeed = 4f;
 
-    [Tooltip("坠落中允许的水平移动比例（微调落点）。")]
-    [SerializeField] [Range(0f, 1f)] private float fallMoveFactor = 0.35f;
-
     private Rigidbody2D rb;
     private Animator animator;
     private ActorHeight actorHeight;
@@ -59,9 +56,9 @@ public class PlayerMovement : MonoBehaviour
             moveInput.Normalize();
         }
 
+        // 坠落期间锁死水平移动，避免尚未切到下层碰撞时往回走穿墙。
         bool falling = actorHeight != null && actorHeight.IsFalling;
-        float speed = falling ? moveSpeed * fallMoveFactor : moveSpeed;
-        rb.velocity = moveInput * speed;
+        rb.velocity = falling ? Vector2.zero : moveInput * moveSpeed;
 
         UpdateAnimation(moveInput, falling);
     }
