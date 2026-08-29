@@ -144,6 +144,9 @@ MonoBehaviour:
   sortingGroup: {fileID: 910011223344556680}
   body: {fileID: 1655929633216835784}
   bodyCollider: {fileID: 3522294309386225949}
+  checkFloorSupport: 1
+  fallSpeed: 4
+  animator: {fileID: 0}
 --- !u!1 &910011223344556679
 GameObject:
   m_ObjectHideFlags: 0
